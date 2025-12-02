@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shervin's Portfolio | Telegram Bot Developer</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/light-mode.css" id="light-mode-css" disabled>
+    <link rel="stylesheet" href="css/dark-mode.css" id="dark-mode-css" disabled>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="images/ui/favicon.ico">
+</head>
+<body>
+    <!-- Theme Toggle -->
+    <div class="theme-toggle glass" id="themeToggle">
+        <i class="fas fa-moon" id="themeIcon"></i>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="main-nav glass">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="text-gradient">SK</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link active">Home</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#contact" class="nav-link">Contact</a>
+                <a href="projects/telegram-vault.html" class="nav-link">Telegram Vault</a>
+                <a href="projects/speakeasy.html" class="nav-link">Speakeasy</a>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="bg-orbs">
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+        </div>
+
+        <div class="hero-content fade-in">
+            <div class="avatar accent-gradient scale-in">
+                <div class="avatar-inner">
+                    <span class="text-gradient">SK</span>
+                </div>
+            </div>
+
+            <h1 class="fade-in-up">Shervin Keshavarz</h1>
+            <p class="tagline fade-in-up">Telegram Bot Developer & Automation Architect</p>
+            <p class="subtitle fade-in-up">
+                Crafting seamless digital experiences with clean code<br class="desktop-break">
+                and pixel-perfect interfaces
+            </p>
+
+            <div class="cta-buttons fade-in-up">
+                <a href="#projects" class="btn btn-primary">View Projects</a>
+                <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down" style="color: var(--secondary-text); font-size: 32px;"></i>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="section-header fade-in">
+            <h2 class="section-title">Featured Projects</h2>
+            <p class="section-subtitle">A selection of my recent work</p>
+        </div>
+
+        <div class="projects-container">
+            <div class="carousel-container">
+                <!-- Project 1 - Active -->
+                <a href="projects/telegram-vault.html" class="project-card" style="transform: translateX(0) scale(1); z-index: 30; opacity: 1;">
+                    <div class="project-card-inner glass">
+                        <div class="project-icon" style="background: linear-gradient(to bottom right, #3B82F6, #06B6D4);">
+                            <i class="fas fa-shield-alt" style="color: white; font-size: 32px;"></i>
+                        </div>
+                        <h3 class="project-title">Telegram Vault</h3>
+                        <p class="project-description">
+                            E2E encrypted password manager via Telegram. Access anywhere, migrate seamlessly, stay secure even if devices are compromised.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">AES-128</span>
+                            <span class="tag">SQLite</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Project 2 - Right -->
+                <a href="projects/speakeasy.html" class="project-card" style="transform: translateX(180px) scale(0.85); z-index: 20; opacity: 0.7; rotate: y -15deg;">
+                    <div class="project-card-inner glass">
+                        <div class="project-icon" style="background: linear-gradient(to bottom right, #8B5CF6, #EC4899);">
+                            <i class="fas fa-comment-alt" style="color: white; font-size: 32px;"></i>
+                        </div>
+                        <h3 class="project-title">Speakeasy</h3>
+                        <p class="project-description">
+                            Telegram bot for text-to-speech with batch processing and multi-language support. English, Farsi, and expandable.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">TTS</span>
+                            <span class="tag">Telegram Bot</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Project 3 - Left -->
+                <a href="#" class="project-card" style="transform: translateX(-180px) scale(0.85); z-index: 20; opacity: 0.7; rotate: y 15deg;">
+                    <div class="project-card-inner glass">
+                        <div class="project-icon" style="background: linear-gradient(to bottom right, #F97316, #EF4444);">
+                            <i class="fas fa-download" style="color: white; font-size: 32px;"></i>
+                        </div>
+                        <h3 class="project-title">Downloader</h3>
+                        <p class="project-description">
+                            Download files from Instagram and YouTube with ease.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Coming Soon</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="carousel-nav">
+                <div class="nav-btn" id="prevBtn">
+                    <i class="fas fa-chevron-left"></i>
+                </div>
+                <div class="nav-btn" id="nextBtn">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+
+            <div class="carousel-dots">
+                <div class="dot active" data-index="0"></div>
+                <div class="dot" data-index="1"></div>
+                <div class="dot" data-index="2"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Strengths Section -->
+    <section class="section">
+        <div class="section-header fade-in">
+            <h2 class="section-title">Guarantees</h2>
+            <p class="section-subtitle">What I promise on every project</p>
+        </div>
+
+        <div class="strengths-container glass" style="border-radius: 1.5rem; overflow: hidden;">
+            <!-- Strength 1 -->
+            <div class="strength-card">
+                <div class="strength-icon" style="background-color: rgba(0, 122, 255, 0.1);">
+                    <i class="fas fa-layer-group" style="color: #007AFF; font-size: 24px;"></i>
+                </div>
+                <div class="strength-content">
+                    <h3 class="strength-title">Enterprise-grade Structure</h3>
+                    <p class="strength-description">Scalable, maintainable architecture</p>
+                    <p class="strength-tooltip" style="display: none; color: #007AFF;">
+                        Built with industry-standard patterns like SOLID, DRY, and modular design for long-term maintainability.
+                    </p>
+                </div>
+                <i class="fas fa-chevron-right strength-chevron" style="color: var(--separator);"></i>
+            </div>
+
+            <!-- Strength 2 -->
+            <div class="strength-card">
+                <div class="strength-icon" style="background-color: rgba(48, 209, 88, 0.1);">
+                    <i class="fas fa-shield-alt" style="color: #30D158; font-size: 24px;"></i>
+                </div>
+                <div class="strength-content">
+                    <h3 class="strength-title">Full Test Suite</h3>
+                    <p class="strength-description">Edge cases covered thoroughly</p>
+                    <p class="strength-tooltip" style="display: none; color: #30D158;">
+                        Comprehensive unit, integration, and E2E tests to catch bugs before they reach production.
+                    </p>
+                </div>
+                <i class="fas fa-chevron-right strength-chevron" style="color: var(--separator);"></i>
+            </div>
+
+            <!-- Strength 3 -->
+            <div class="strength-card">
+                <div class="strength-icon" style="background-color: rgba(255, 149, 0, 0.1);">
+                    <i class="fas fa-code" style="color: #FF9500; font-size: 24px;"></i>
+                </div>
+                <div class="strength-content">
+                    <h3 class="strength-title">Clean Logging</h3>
+                    <p class="strength-description">Fast debugging & monitoring</p>
+                    <p class="strength-tooltip" style="display: none; color: #FF9500;">
+                        Structured logs with proper levels and context for quick issue identification and resolution.
+                    </p>
+                </div>
+                <i class="fas fa-chevron-right strength-chevron" style="color: var(--separator);"></i>
+            </div>
+
+            <!-- Strength 4 -->
+            <div class="strength-card">
+                <div class="strength-icon" style="background-color: rgba(175, 82, 222, 0.1);">
+                    <i class="fas fa-palette" style="color: #AF52DE; font-size: 24px;"></i>
+                </div>
+                <div class="strength-content">
+                    <h3 class="strength-title">Client-first UX</h3>
+                    <p class="strength-description">User experience is priority</p>
+                    <p class="strength-tooltip" style="display: none; color: #AF52DE;">
+                        Every feature is designed with end-users in mind, ensuring intuitive and delightful interactions.
+                    </p>
+                </div>
+                <i class="fas fa-chevron-right strength-chevron" style="color: var(--separator);"></i>
+            </div>
+
+            <!-- Strength 5 -->
+            <div class="strength-card">
+                <div class="strength-icon" style="background-color: rgba(255, 45, 85, 0.1);">
+                    <i class="fas fa-bolt" style="color: #FF2D55; font-size: 24px;"></i>
+                </div>
+                <div class="strength-content">
+                    <h3 class="strength-title">Always Meet Deadlines</h3>
+                    <p class="strength-description">Reliable & on-time delivery</p>
+                    <p class="strength-tooltip" style="display: none; color: #FF2D55;">
+                        Clear communication, realistic estimates, and disciplined execution to deliver on time, every time.
+                    </p>
+                </div>
+                <i class="fas fa-chevron-right strength-chevron" style="color: var(--separator);"></i>
+            </div>
+
+            <!-- Strength 6 -->
+            <div class="strength-card" style="border-bottom: none;">
+                <div class="strength-icon" style="background-color: rgba(88, 86, 214, 0.1);">
+                    <i class="fas fa-mobile-alt" style="color: #5856D6; font-size: 24px;"></i>
+                </div>
+                <div class="strength-content">
+                    <h3 class="strength-title">Internet Workarounds</h3>
+                    <p class="strength-description">Solutions for restrictions</p>
+                    <p class="strength-tooltip" style="display: none; color: #5856D6;">
+                        Creative solutions for geo-blocks, firewalls, and connectivity issues to keep your app accessible globally.
+                    </p>
+                </div>
+                <i class="fas fa-chevron-right strength-chevron" style="color: var(--separator);"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="section-header fade-in">
+            <h2 class="section-title">Let's Connect</h2>
+            <p class="section-subtitle">Have a project in mind? Let's build something amazing together.</p>
+        </div>
+
+        <div class="contact-container">
+            <div class="contact-card fade-in-up">
+                <div class="location">
+                    <i class="fas fa-map-marker-alt" style="color: var(--accent);"></i>
+                    <span>Iran, Tehran</span>
+                </div>
+
+                <a href="mailto:Shervink83@gmail.com" class="btn btn-primary" style="margin-bottom: 32px;">
+                    <i class="fas fa-envelope" style="margin-right: 8px;"></i>
+                    Shervink83@gmail.com
+                </a>
+
+                <div class="social-links">
+                    <a href="https://github.com/Shervin83k" class="social-icon" target="_blank">
+                        <i class="fab fa-github" style="color: #333; font-size: 24px;"></i>
+                    </a>
+                    <a href="https://t.me/shervink831" class="social-icon" target="_blank">
+                        <i class="fab fa-telegram-plane" style="color: #0088cc; font-size: 24px;"></i>
+                    </a>
+                    <a href="mailto:Shervink83@gmail.com" class="social-icon">
+                        <i class="fas fa-envelope" style="color: #EA4335; font-size: 24px;"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer fade-in">
+                <p>Designed & Built By Shervin</p>
+                <p>© 2025 Shervin Keshavarz. All rights reserved.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script src="js/theme-manager.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/projects-carousel.js"></script>
+</body>
+</html>

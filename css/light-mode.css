@@ -1,0 +1,38 @@
+/* Light Mode Specific Styles */
+:root {
+    --accent: #007AFF;
+    --accent-dark: #0A84FF;
+    --glass-bg: rgba(255, 255, 255, 0.8);
+    --glass-border: rgba(0, 0, 0, 0.05);
+    --card-bg: #FFFFFF;
+    --secondary-text: #6E6E73;
+    --separator: rgba(60, 60, 67, 0.12);
+    --bg-color: #F2F2F7;
+    --text-color: #000000;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+.glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+}
+
+.project-card-inner {
+    background: var(--card-bg);
+    box-shadow: var(--shadow);
+}
+
+.strength-card:hover {
+    background: rgba(0, 0, 0, 0.02);
+}
+
+.social-icon {
+    background: rgba(0, 0, 0, 0.05);
+}

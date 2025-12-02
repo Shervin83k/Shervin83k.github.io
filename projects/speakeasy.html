@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speakeasy | Shervin's Portfolio</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/light-mode.css" id="light-mode-css" disabled>
+    <link rel="stylesheet" href="../css/dark-mode.css" id="dark-mode-css" disabled>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="../images/ui/favicon.ico">
+    <style>
+        /* Project Page Specific Styles */
+        .project-hero-section {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 24px 60px;
+            position: relative;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.1));
+        }
+        
+        .project-hero-content {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+        }
+        
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            padding: 10px 16px;
+            border-radius: 12px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            z-index: 10;
+        }
+        
+        .back-btn:hover {
+            transform: translateX(-4px);
+            background: var(--accent);
+            color: white;
+        }
+        
+        .project-hero-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .project-icon-large {
+            width: 80px;
+            height: 80px;
+            border-radius: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            background: linear-gradient(135deg, #8B5CF6, #EC4899);
+            color: white;
+            font-size: 32px;
+        }
+        
+        .project-title-large {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        
+        .project-subtitle {
+            font-size: 1.5rem;
+            color: var(--secondary-text);
+            margin-bottom: 32px;
+        }
+        
+        .project-meta {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+        
+        .project-date, .project-github {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--secondary-text);
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+        }
+        
+        .project-github:hover {
+            background: var(--accent);
+            color: white;
+        }
+        
+        .project-gallery-section {
+            padding: 80px 24px;
+            background: rgba(0, 0, 0, 0.02);
+        }
+        
+        .project-gallery-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Image Container for Consistent Size */
+        .image-container {
+            width: 100%;
+            height: 280px;
+            overflow: hidden;
+            border-radius: 1.5rem;
+            background: var(--card-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .image-container img {
+            width: auto;
+            height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+            padding: 16px;
+        }
+        
+        /* Modified Carousel for Project Pages */
+        .project-carousel-container {
+            position: relative;
+            height: 320px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            perspective: 1000px;
+            margin: 0 auto;
+        }
+        
+        .project-carousel-item {
+            position: absolute;
+            width: 280px;
+            cursor: pointer;
+            transform-style: preserve-3d;
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        .project-carousel-item:hover .image-container {
+            transform: translateY(-4px);
+            box-shadow: 0 25px 50px -12px rgba(139, 92, 246, 0.25);
+        }
+        
+        .carousel-nav {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 32px;
+        }
+        
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 24px;
+        }
+        
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: var(--separator);
+        }
+        
+        .dot.active {
+            width: 24px;
+            background: var(--accent);
+            border-radius: 9999px;
+        }
+        
+        .project-details-section {
+            padding: 80px 24px;
+        }
+        
+        .project-details-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .project-section {
+            margin-bottom: 48px;
+        }
+        
+        .project-section-title {
+            font-size: 2rem;
+            margin-bottom: 24px;
+            color: var(--text-color);
+        }
+        
+        .project-text {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            margin-bottom: 16px;
+            color: var(--secondary-text);
+        }
+        
+        .feature-list {
+            list-style: none;
+        }
+        
+        .feature-list li {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 24px;
+            align-items: flex-start;
+        }
+        
+        .feature-icon {
+            color: var(--accent);
+            font-size: 1.5rem;
+            margin-top: 4px;
+        }
+        
+        .feature-list h4 {
+            font-size: 1.125rem;
+            margin-bottom: 4px;
+        }
+        
+        .tech-stack {
+            display: grid;
+            gap: 32px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+        
+        .tech-category h4 {
+            font-size: 1.125rem;
+            margin-bottom: 12px;
+            color: var(--text-color);
+        }
+        
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .tech-tag {
+            padding: 6px 12px;
+            background: var(--accent);
+            color: white;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        
+        .github-info {
+            background: var(--card-bg);
+            border-radius: 1.5rem;
+            padding: 32px;
+            box-shadow: var(--shadow);
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            z-index: 1000;
+        }
+        
+        .back-to-top-btn {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 10px 25px rgba(139, 92, 246, 0.25);
+            transition: var(--transition);
+        }
+        
+        .back-to-top-btn:hover {
+            transform: translateY(-4px);
+        }
+        
+        @media (max-width: 768px) {
+            .project-hero-section {
+                padding: 100px 20px 40px;
+                min-height: 50vh;
+            }
+            
+            .back-btn {
+                position: fixed;
+                top: 90px;
+                left: 20px;
+                margin: 0;
+                z-index: 1001;
+            }
+            
+            .project-hero-content {
+                padding: 0;
+            }
+            
+            .project-title-large {
+                font-size: 2.5rem;
+            }
+            
+            .project-subtitle {
+                font-size: 1.25rem;
+            }
+            
+            .project-meta {
+                flex-direction: column;
+                align-items: center;
+                gap: 16px;
+            }
+            
+            .project-carousel-container {
+                height: 280px;
+            }
+            
+            .project-carousel-item {
+                width: 240px;
+            }
+            
+            .image-container {
+                height: 240px;
+            }
+            
+            .tech-stack {
+                grid-template-columns: 1fr;
+            }
+            
+            .carousel-dots {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .project-carousel-container {
+                height: 240px;
+            }
+            
+            .project-carousel-item {
+                width: 200px;
+            }
+            
+            .image-container {
+                height: 200px;
+            }
+            
+            .project-title-large {
+                font-size: 2rem;
+            }
+            
+            .project-subtitle {
+                font-size: 1.125rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Theme Toggle -->
+    <div class="theme-toggle glass" id="themeToggle">
+        <i class="fas fa-moon" id="themeIcon"></i>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="main-nav glass">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <span class="text-gradient">SK</span>
+            </a>
+            <div class="nav-links">
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="../index.html#projects" class="nav-link">Projects</a>
+                <a href="../index.html#contact" class="nav-link">Contact</a>
+                <a href="telegram-vault.html" class="nav-link">Telegram Vault</a>
+                <a href="speakeasy.html" class="nav-link active">Speakeasy</a>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Project Hero -->
+    <section class="project-hero-section">
+        <div class="project-hero-content">
+            <a href="../index.html#projects" class="back-btn">
+                <i class="fas fa-arrow-left"></i> Back to Projects
+            </a>
+            
+            <div class="project-hero-header">
+                <div class="project-icon-large">
+                    <i class="fas fa-comment-alt"></i>
+                </div>
+                <h1 class="project-title-large">Speakeasy</h1>
+                <p class="project-subtitle">Multi-language Text-to-Speech Telegram Bot</p>
+                
+                <div class="project-meta">
+                    <span class="project-date">
+                        <i class="far fa-calendar"></i> Completed: 2025
+                    </span>
+                    <a href="https://github.com/Shervin83k/speakeasy" class="project-github" target="_blank">
+                        <i class="fab fa-github"></i> View on GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Gallery -->
+    <section class="project-gallery-section">
+        <div class="section-header">
+            <h2 class="section-title">Project Gallery</h2>
+            <p class="section-subtitle">See it in action</p>
+        </div>
+        
+        <div class="project-gallery-container">
+            <div class="project-carousel-container">
+                <!-- Images will be dynamically positioned by JavaScript -->
+                <div class="project-carousel-item" data-index="0">
+                    <div class="image-container glass">
+                        <img src="../images/Speakeasy/main-menu.jpg" alt="Speakeasy Main Menu">
+                    </div>
+                </div>
+
+                <div class="project-carousel-item" data-index="1">
+                    <div class="image-container glass">
+                        <img src="../images/Speakeasy/english-use.jpg" alt="English TTS Functionality">
+                    </div>
+                </div>
+
+                <div class="project-carousel-item" data-index="2">
+                    <div class="image-container glass">
+                        <img src="../images/Speakeasy/persian-use.jpg" alt="Persian TTS Functionality">
+                    </div>
+                </div>
+                
+                <div class="project-carousel-item" data-index="3">
+                    <div class="image-container glass">
+                        <img src="../images/Speakeasy/bot-log.jpg" alt="System Logs">
+                    </div>
+                </div>
+                
+                <div class="project-carousel-item" data-index="4">
+                    <div class="image-container glass">
+                        <img src="../images/Speakeasy/code-snippet.jpg" alt="Code Quality">
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-nav">
+                <div class="nav-btn project-prev-btn">
+                    <i class="fas fa-chevron-left"></i>
+                </div>
+                <div class="nav-btn project-next-btn">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+
+            <div class="carousel-dots">
+                <div class="dot active" data-index="0"></div>
+                <div class="dot" data-index="1"></div>
+                <div class="dot" data-index="2"></div>
+                <div class="dot" data-index="3"></div>
+                <div class="dot" data-index="4"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Details -->
+    <section class="project-details-section">
+        <div class="project-details-container">
+            <div class="project-content">
+                <div class="project-section">
+                    <h2 class="project-section-title">Project Overview</h2>
+                    <p class="project-text">
+                        Speakeasy is a powerful Telegram bot that converts text to speech with support for multiple languages 
+                        and batch processing capabilities. It's designed to be intuitive, fast, and accessible for users who 
+                        need audio versions of text content.
+                    </p>
+                    
+                    <p class="project-text">
+                        The project was developed to address the need for a simple, multi-language TTS solution that works 
+                        directly within Telegram, eliminating the need for separate apps or complicated setup processes.
+                    </p>
+                </div>
+                
+                <div class="project-section">
+                    <h2 class="project-section-title">Key Features</h2>
+                    <ul class="feature-list">
+                        <li>
+                            <i class="fas fa-language feature-icon"></i>
+                            <div>
+                                <h4>Multi-language Support</h4>
+                                <p>Supports English, Farsi, and easily expandable to other languages</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-layer-group feature-icon"></i>
+                            <div>
+                                <h4>Batch Processing</h4>
+                                <p>Process multiple text files or long documents in a single operation</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-cogs feature-icon"></i>
+                            <div>
+                                <h4>Customizable Voices</h4>
+                                <p>Adjust speech rate, pitch, and volume for personalized audio output</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-bolt feature-icon"></i>
+                            <div>
+                                <h4>High Performance</h4>
+                                <p>Optimized for quick processing even with large text inputs</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-file-audio feature-icon"></i>
+                            <div>
+                                <h4>Audio Management</h4>
+                                <p>Smart file cleanup and organized audio output management</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-shield-alt feature-icon"></i>
+                            <div>
+                                <h4>Rate Limited</h4>
+                                <p>Built-in rate limiting ensures stability under heavy usage</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="project-section">
+                    <h2 class="project-section-title">Technical Stack</h2>
+                    <div class="tech-stack">
+                        <div class="tech-category">
+                            <h4>Core Technologies</h4>
+                            <div class="tech-tags">
+                                <span class="tech-tag">Python 3.8+</span>
+                                <span class="tech-tag">python-telegram-bot v20</span>
+                                <span class="tech-tag">gTTS</span>
+                                <span class="tech-tag">FFMPEG</span>
+                            </div>
+                        </div>
+                        
+                        <div class="tech-category">
+                            <h4>Audio Processing</h4>
+                            <div class="tech-tags">
+                                <span class="tech-tag">pydub</span>
+                                <span class="tech-tag">Audio Normalization</span>
+                                <span class="tech-tag">Format Conversion</span>
+                                <span class="tech-tag">Batch Processing</span>
+                            </div>
+                        </div>
+                        
+                        <div class="tech-category">
+                            <h4>Features</h4>
+                            <div class="tech-tags">
+                                <span class="tech-tag">Multi-language JSON</span>
+                                <span class="tech-tag">Usage Quotas</span>
+                                <span class="tech-tag">Rate Limiting</span>
+                                <span class="tech-tag">Structured Logging</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-section">
+                    <h2 class="project-section-title">Use Cases</h2>
+                    <div class="github-info">
+                        <div class="project-text">
+                            <strong>Content Consumption:</strong> Convert articles, messages, or documents to audio for listening on the go. Perfect for multitasking or when you can't read text directly.
+                        </div>
+                        <div class="project-text">
+                            <strong>Language Learning:</strong> Hear proper pronunciation in multiple languages. Great for students learning English or Farsi pronunciation.
+                        </div>
+                        <div class="project-text">
+                            <strong>Accessibility:</strong> Make text content accessible for visually impaired users. Convert any text message to audible speech instantly.
+                        </div>
+                        <div class="project-text">
+                            <strong>Batch Operations:</strong> Process multiple lines of text efficiently for content creators, educators, or anyone dealing with large amounts of text.
+                        </div>
+                        
+                        <a href="https://github.com/Shervin83k/speakeasy" class="btn btn-primary" target="_blank" style="margin-top: 24px;">
+                            <i class="fab fa-github"></i> View Repository
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Back to Top -->
+    <div class="back-to-top">
+        <a href="#top" class="back-to-top-btn">
+            <i class="fas fa-arrow-up"></i>
+        </a>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../js/theme-manager.js"></script>
+    <script src="../js/navigation.js"></script>
+    
+    <!-- Project Gallery Script -->
+    <script>
+        class ProjectGalleryCarousel {
+            constructor() {
+                this.projectItems = document.querySelectorAll('.project-carousel-item');
+                this.dots = document.querySelectorAll('.carousel-dots .dot');
+                this.prevBtn = document.querySelector('.project-prev-btn');
+                this.nextBtn = document.querySelector('.project-next-btn');
+                this.currentIndex = 0;
+                this.totalItems = this.projectItems.length;
+                this.isMobile = window.innerWidth <= 768;
+                this.isAutoRotating = true;
+                this.autoRotateInterval = null;
+                
+                if (this.projectItems.length > 0) {
+                    this.init();
+                }
+                
+                // Update on resize
+                window.addEventListener('resize', () => {
+                    this.isMobile = window.innerWidth <= 768;
+                    this.updateCarousel();
+                });
+            }
+            
+            init() {
+                this.updateCarousel();
+                
+                // Event listeners for navigation buttons
+                if (this.nextBtn) {
+                    this.nextBtn.addEventListener('click', () => {
+                        this.next();
+                        this.resetAutoRotation();
+                    });
+                }
+                
+                if (this.prevBtn) {
+                    this.prevBtn.addEventListener('click', () => {
+                        this.prev();
+                        this.resetAutoRotation();
+                    });
+                }
+                
+                // Event listeners for dots
+                this.dots.forEach(dot => {
+                    dot.addEventListener('click', () => {
+                        this.currentIndex = parseInt(dot.dataset.index);
+                        this.updateCarousel();
+                        this.resetAutoRotation();
+                    });
+                });
+                
+                // Click on image to center it
+                this.projectItems.forEach(item => {
+                    item.addEventListener('click', () => {
+                        const index = parseInt(item.dataset.index);
+                        this.currentIndex = index;
+                        this.updateCarousel();
+                        this.resetAutoRotation();
+                    });
+                });
+                
+                // Start auto rotation
+                this.startAutoRotation();
+                
+                // Pause auto rotation on hover
+                this.projectItems.forEach(item => {
+                    item.addEventListener('mouseenter', () => this.pauseAutoRotation());
+                    item.addEventListener('mouseleave', () => this.resumeAutoRotation());
+                });
+            }
+            
+            updateCarousel() {
+                const items = Array.from(this.projectItems);
+                
+                if (this.isMobile) {
+                    // Mobile: Show only 3 items at a time
+                    items.forEach((item, index) => {
+                        const diff = index - this.currentIndex;
+                        
+                        if (Math.abs(diff) <= 1) {
+                            item.style.display = 'block';
+                            if (diff === 0) {
+                                // Center
+                                item.style.transform = 'translateX(0) scale(1)';
+                                item.style.zIndex = '30';
+                                item.style.opacity = '1';
+                                item.style.rotate = 'y 0deg';
+                            } else if (diff === 1) {
+                                // Right
+                                item.style.transform = 'translateX(100px) scale(0.85)';
+                                item.style.zIndex = '20';
+                                item.style.opacity = '0.7';
+                                item.style.rotate = 'y -15deg';
+                            } else if (diff === -1) {
+                                // Left
+                                item.style.transform = 'translateX(-100px) scale(0.85)';
+                                item.style.zIndex = '20';
+                                item.style.opacity = '0.7';
+                                item.style.rotate = 'y 15deg';
+                            }
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                } else {
+                    // Desktop: Show all items in a nice curve
+                    items.forEach((item, index) => {
+                        const diff = index - this.currentIndex;
+                        const absDiff = Math.abs(diff);
+                        
+                        item.style.display = 'block';
+                        
+                        if (diff === 0) {
+                            // Center item
+                            item.style.transform = 'translateX(0) scale(1)';
+                            item.style.zIndex = '30';
+                            item.style.opacity = '1';
+                            item.style.rotate = 'y 0deg';
+                        } else if (absDiff === 1) {
+                            // Immediate left/right
+                            const direction = diff > 0 ? 1 : -1;
+                            item.style.transform = `translateX(${direction * 180}px) scale(0.85)`;
+                            item.style.zIndex = '20';
+                            item.style.opacity = '0.7';
+                            item.style.rotate = `y ${direction * -15}deg`;
+                        } else if (absDiff === 2) {
+                            // Far left/right
+                            const direction = diff > 0 ? 1 : -1;
+                            item.style.transform = `translateX(${direction * 320}px) scale(0.75)`;
+                            item.style.zIndex = '15';
+                            item.style.opacity = '0.5';
+                            item.style.rotate = `y ${direction * -25}deg`;
+                        } else if (absDiff === 3) {
+                            // Very far left/right
+                            const direction = diff > 0 ? 1 : -1;
+                            item.style.transform = `translateX(${direction * 420}px) scale(0.65)`;
+                            item.style.zIndex = '10';
+                            item.style.opacity = '0.3';
+                            item.style.rotate = `y ${direction * -35}deg`;
+                        } else {
+                            // Hidden items
+                            const direction = diff > 0 ? 1 : -1;
+                            item.style.transform = `translateX(${direction * 600}px) scale(0.5)`;
+                            item.style.zIndex = '5';
+                            item.style.opacity = '0.1';
+                            item.style.rotate = `y ${direction * -45}deg`;
+                        }
+                    });
+                }
+
+                // Update dots
+                this.dots.forEach((dot, index) => {
+                    if (index === this.currentIndex) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
+                    }
+                });
+            }
+            
+            next() {
+                this.currentIndex = (this.currentIndex + 1) % this.totalItems;
+                this.updateCarousel();
+            }
+            
+            prev() {
+                this.currentIndex = (this.currentIndex - 1 + this.totalItems) % this.totalItems;
+                this.updateCarousel();
+            }
+            
+            startAutoRotation() {
+                if (this.autoRotateInterval) clearInterval(this.autoRotateInterval);
+                this.autoRotateInterval = setInterval(() => {
+                    this.next();
+                }, 4000);
+            }
+            
+            pauseAutoRotation() {
+                if (this.autoRotateInterval) {
+                    clearInterval(this.autoRotateInterval);
+                    this.autoRotateInterval = null;
+                }
+            }
+            
+            resumeAutoRotation() {
+                if (!this.autoRotateInterval) {
+                    this.startAutoRotation();
+                }
+            }
+            
+            resetAutoRotation() {
+                this.pauseAutoRotation();
+                this.resumeAutoRotation();
+            }
+        }
+
+        // Initialize gallery when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            const carousel = new ProjectGalleryCarousel();
+            
+            // Smooth scrolling for back to top
+            document.querySelector('.back-to-top-btn').addEventListener('click', function(e) {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Handle navigation clicks
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    // Close mobile menu if open
+                    if (window.innerWidth <= 768) {
+                        const navLinks = document.querySelector('.nav-links');
+                        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+                        if (navLinks.style.display === 'flex') {
+                            navLinks.style.display = '';
+                            mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

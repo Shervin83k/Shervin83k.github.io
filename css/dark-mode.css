@@ -1,0 +1,48 @@
+/* Dark Mode Specific Styles */
+:root {
+    --accent: #0A84FF;
+    --glass-bg: rgba(28, 28, 30, 0.8);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --card-bg: #1C1C1E;
+    --secondary-text: #8E8E93;
+    --separator: rgba(84, 84, 88, 0.6);
+    --bg-color: #000000;
+    --text-color: #FFFFFF;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+.glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+}
+
+.project-card-inner {
+    background: var(--card-bg);
+    box-shadow: var(--shadow);
+}
+
+.strength-card:hover {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.social-icon {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Dark mode specific adjustments */
+input, textarea, select {
+    background: var(--card-bg);
+    color: var(--text-color);
+    border-color: var(--separator);
+}
+
+input::placeholder, textarea::placeholder {
+    color: var(--secondary-text);
+}
